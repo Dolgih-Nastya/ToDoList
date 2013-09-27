@@ -1,0 +1,29 @@
+<%p=Project.last%>
+<table class="tasks" id = "project_<%=p.id%>">
+  <tr class="header nodrop nodrag">
+    <td align="center" >
+      <img src = "../images/sheet1.png">
+    </td>
+    <td >
+      <%=p.name%>
+    </td>
+    <td align="right"   >
+      <input type="button"  class="imgClassEditProject"/>
+      <input type="button"  class="imgClassDeleteProject"/>
+    </td>
+  </tr>
+  <tr class="new_task_create nodrop nodrag">
+    <td align="center">
+      <img src="../images/cross.png">
+    </td>
+    <td>
+      <%=form_for Task.new, :url => "/new_task" do |f| %>
+          <%=f.hidden_field :project, :value => p.id %>
+          <%=f.text_field :name,:class => "new_task_field", :placeholder=>'Start typing here to create a task ...'%>
+          </td>
+          <td>
+            <%=f.submit :value=>"Add Task", :class=>"new_task_submit"%>
+          </td>
+      <%end%>
+      </tr>
+    </table>

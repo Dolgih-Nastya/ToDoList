@@ -1,0 +1,46 @@
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete%>
+<%current_user.projects.each  do |p|%>
+    <table class="tasks" id = "project_<%=p.id%>">
+      <tr class="header nodrop nodrag">
+          <td align="center" >
+            <img src = "../images/sheet1.png">
+          </td>
+          <td >
+          <%=p.name%>
+          </td>
+          <td align="right"   >
+            <input type="button"  class="imgClassEditProject"/>
+            <input type="button"  class="imgClassDeleteProject"/>
+          </td>
+      </tr>
+      <tr class="new_task_create nodrop nodrag">
+        <td align="center">
+          <img src="../images/cross.png">
+        </td>
+        <td>
+          <%=form_for Task.new, :url => "/new_task" do |f| %>
+              <%=f.hidden_field :project, :id=> "hf_prj#{p.id}", :value => p.id %>
+              <%=f.text_field :name,:id=>"f_prj#{p.id} ", :class => "new_task_field", :placeholder=>'Start typing here to create a task ...'%>
+          </td>
+          <td>
+              <%=f.submit :value=>"Add Task", :class=>"new_task_submit"%>
+          </td>
+          <%end%>
+      </tr>
+      <%p.tasks.each do |t|%>
+          <tr id = "task_<%=t.id%>" class="row_change">
+            <td class="col_change_first"><input type="checkbox" name="myTextEditBox" value="checked"></td>
+            <td class=" editable col_change"> <%=t.name%> </td>
+            <td class="col_change">
+              <input type="button" class="imgClassUp" />
+              <input type="button" class= "imgClassEdit">
+              <input type="button" class="imgClassDelete">
+            </td>
+          </tr>
+      <%end%>
+    </table>
+    <br>  </br>
+<%end%>
+
+<input type="button"  id = "add_list"/>
+

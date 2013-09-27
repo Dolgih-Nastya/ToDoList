@@ -1,0 +1,130 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#add_list{
+  background-position:  0px 0px;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 50px;
+  border: 0px;
+  background-image: url("../images/add_list.png");
+  margin-left: 40%;
+}
+
+.imgClassDelete, .imgClassEdit, .imgClassUp, .imgClassDown{
+  visibility : hidden
+}
+
+.dragHandle{
+
+}
+
+.imgClassEditProject, .imgClassDeleteProject{
+  visibility : hidden
+}
+
+table {
+  margin: auto;
+  //width: 50%; /* Ширина таблицы */
+  border-collapse: collapse;
+  border:"0"
+}
+
+.header {
+  color: #fff;
+  height: 35px;
+  background: #4272ae ;
+  font-size: 18px;
+}
+
+td {
+  //padding: 3px; /* Поля вокруг содержимого таблицы */
+  //border: 1px solid #000; /* Параметры рамки */
+
+}
+.row_change{
+  padding: 3px; /* Поля вокруг содержимого таблицы */
+  border: 1px solid #000; /* Параметры рамки */
+}
+.col_change{
+ padding: 3px; /* Поля вокруг содержимого таблицы */
+ border: 1px solid #e7ebea;
+}
+.col_change_first{
+  padding: 3px; /* Поля вокруг содержимого таблицы */
+  border: 1px solid #e7ebea;
+  border-collapse: separate;
+}
+tr{
+  color: #999999;
+}
+.row_change:hover {
+  background: #fcfed5; /* Цвет фона при наведении */
+}
+
+.row_change:hover .imgClassDelete, .imgClassUp, .imgClassEdit, .imgClassDelete {
+  background-position:  0px 0px;
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 25px;
+  border: 0px;
+}
+
+.row_change:hover .imgClassEdit {
+  visibility : visible;
+  background-image: url("../images/edit.png");
+}
+
+.row_change:hover .imgClassUp {
+  visibility : visible;
+  background-image: url("../images/up-down.png");
+}
+
+.row_change:hover .imgClassDown {
+  visibility : visible;
+  background-image: url("../images/up-down.png");
+}
+
+.row_change:hover .imgClassDelete{
+  visibility : visible;
+  background-image: url("../images/delete.png");
+}
+
+.new_task_field{
+  width: 380px;
+  height: 15px;
+}
+
+.new_task_submit{
+  background: #69a081 ;
+  border-radius: 5px;
+  width: 100%;
+  color: #fff;
+}
+
+.new_task_create{
+  background: #d3d3d3;
+}
+
+.header:hover .imgClassEditProject, .imgClassDeleteProject {
+  background-position:  0px 0px;
+  background-repeat: no-repeat;
+  width: 24px;
+  height:24px;
+  border: 0px;
+}
+.header:hover .imgClassDeleteProject{
+  visibility : visible;
+  background-image: url("../images/delete_project.png");
+}
+
+.header:hover .imgClassEditProject{
+  visibility : visible;
+  background-image: url("../images/edit_project.png");
+}
+
+
+
+
+
+

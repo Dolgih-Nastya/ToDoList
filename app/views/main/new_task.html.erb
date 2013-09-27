@@ -1,0 +1,10 @@
+<%t=Task.last%>
+<tr id = "task_<%=t.id%>" class="row_change">
+  <td class="col_change_first"><input type="checkbox" name="myTextEditBox" value="checked"></td>
+  <td class="col_change"> <%=t.name%> </td>
+  <td class="col_change">
+    <input type="button" class="imgClassUp" />
+    <input type="button" class= "imgClassEdit">
+    <input type="button" class="imgClassDelete">
+  </td>
+</tr>
