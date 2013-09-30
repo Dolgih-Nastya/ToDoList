@@ -20,10 +20,11 @@ $(document).ready(function(){
             type: 'POST',
             success: function(result) {
                 result.appendTo($(this))
-            },
 
+            },
             error :function(){alert('error')}
    })
+        alert('The project is added. Reload page please')
  });
 
     $("#content").on ('click', 'input[name="isDone"]', function(){
@@ -40,20 +41,15 @@ $(document).ready(function(){
    });
 
     $('#content').on('click', ".new_task_submit", function(){
-        alert(',.,.,')
-        var params=$(this).parents("tr").children("form").serialize();
-        //alert(params)
-        alert($(this).parents("tr").children('form'))
-        //$.post("new_task", params).error(function() { alert("Ошибка выполнения"); })
-        //return false;
+        var params=$(this).parents("tr").children('.for_form').children('form').serialize()
+        $.post("new_task", params)
+        alert('The task is added. Reload page please')
+        return false;
     });
 
         $("#content").on('click','input.imgClassEdit', function(e) {
             var $tables = $(".tasks");
             if (!this.name) {this.name='Save'
-            $tables.each(function () {
-                var _table = $(this);
-            })
             editable(this);
             e.preventDefault();
             }
@@ -123,9 +119,6 @@ $(document).ready(function(){
         var $tables = $(".tasks");
        // alert(this.name)
         if (!this.name) {this.name='Save'
-            $tables.each(function () {
-                var _table = $(this);
-            })
             editableP(this);
             e.preventDefault();
 

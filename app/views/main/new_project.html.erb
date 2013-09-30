@@ -15,7 +15,7 @@
     <td align="center">
       <img src="../images/cross.png">
     </td>
-    <td>
+    <td class ="for_form">
       <%=form_for Task.new, :html => { :id => "form_#{@p.id}" }, :url => "/new_task" do |f| %>
           <%=f.hidden_field :project, :id=> "hf_prj#{@p.id}", :value => @p.id %>
           <%=f.text_field :name,:id=>"f_prj#{@p.id} ", :class => "new_task_field", :placeholder=>'Start typing here to create a task ...'%>
@@ -27,7 +27,7 @@
       </tr>
   <%@p.tasks.each do |t|%>
       <tr id = "task_<%=t.id%>" class="row_change">
-        <<%if t.status==true%>
+        <%if t.status==true%>
             <td class="col_change_first"><input type="checkbox" name="isDone" href = "/change_task_status/<%=t.id%>" checked></td>
         <%else%>
             <td class="col_change_first"><input type="checkbox" name="isDone" href = "/change_task_status/<%=t.id%>"></td>

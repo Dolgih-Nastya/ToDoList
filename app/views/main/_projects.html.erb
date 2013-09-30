@@ -17,7 +17,7 @@
         <td align="center">
           <img src="../images/cross.png">
         </td>
-        <td>
+        <td class="for_form">
           <%=form_for Task.new, :html => { :id => "form_#{p.id}" }, :url => "/new_task" do |f| %>
               <%=f.hidden_field :project, :id=> "hf_prj#{p.id}", :value => p.id %>
               <%=f.text_field :name,:id=>"f_prj#{p.id} ", :class => "new_task_field", :placeholder=>'Start typing here to create a task ...'%>
