@@ -38,6 +38,7 @@
     <file path="/task.rb" changelist="f735e85b-cd82-4a99-a670-51d90287537e" time="1379865841633" ignored="false" />
     <file path="/new_project.html.erb" changelist="f735e85b-cd82-4a99-a670-51d90287537e" time="1380553779693" ignored="false" />
     <file path="/new_task.html.erb" changelist="f735e85b-cd82-4a99-a670-51d90287537e" time="1380522181291" ignored="false" />
+    <file path="/README.rdoc" changelist="f735e85b-cd82-4a99-a670-51d90287537e" time="1380557549642" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,19 +94,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_project.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="new_project.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/main/new_project.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="30" selection-start="1224" selection-end="1224" vertical-scroll-proportion="0.92517006">
+            <state line="30" column="30" selection-start="1224" selection-end="1224" vertical-scroll-proportion="-4.9454546">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_trace.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file:///usr/local/rvm/gems/ruby-1.9.3-p448/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb">
+      <file leaf-file-name="README.rdoc" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.rdoc">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="2" column="42" selection-start="52" selection-end="52" vertical-scroll-proportion="0.08287293">
               <folding />
             </state>
           </provider>
@@ -161,7 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/main/_login.html.erb" />
         <option value="$PROJECT_DIR$/app/views/main/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/devise/registrations.html.erb" />
         <option value="$PROJECT_DIR$/app/views/main/_projects.erb" />
@@ -177,6 +177,7 @@
         <option value="$PROJECT_DIR$/app/views/main/_projects.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/main.js" />
         <option value="$PROJECT_DIR$/app/views/main/new_project.html.erb" />
+        <option value="$PROJECT_DIR$/README.rdoc" />
       </list>
     </option>
   </component>
@@ -1405,11 +1406,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/rvm/gems/ruby-1.9.3-p448/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file:///usr/local/rvm/gems/ruby-1.9.3-p448/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -1502,7 +1498,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/main/new_project.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="30" selection-start="1224" selection-end="1224" vertical-scroll-proportion="0.92517006">
+        <state line="30" column="30" selection-start="1224" selection-end="1224" vertical-scroll-proportion="-4.9454546">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.rdoc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="42" selection-start="52" selection-end="52" vertical-scroll-proportion="0.08287293">
           <folding />
         </state>
       </provider>
