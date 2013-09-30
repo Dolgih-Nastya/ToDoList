@@ -4,6 +4,9 @@ ToDoList::Application.routes.draw do
   get "user_info"  => "main#get_user_info"
   post "new_task" => "main#new_task"
   post "new_project"=>"main#new_project"
-  post "new_task"=>"main#new_task"
-  delete "delete_task"=>"main#delete_task"
+  delete "destroy_task/:id"=>"main#destroy_task"
+  delete "destroy_project/:id"=>"main#destroy_project"
+  put "edit_task/:id" => "main#edit_task"
+  put "edit_project/:id" => "main#edit_project"
+  put "change_task_status/:id" => "main#change_task_status"
 end

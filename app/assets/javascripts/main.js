@@ -4,19 +4,7 @@ $(document).ready(function(){
         $.get("/user_info", function (data) {
             $("#content").prepend(data)
             $(".tasks").tableDnD({//dragHandle: ".drag",
-
-                //onDrop: function (table, row) {
-                    //var table_id = table.id
-                    //var number_of_rows = table.rows.length
-                    //var array_of_id = []
-                    //for (var i = 0;i<number_of_rows;i++){
-                    //array_of_id.push(table.rows[i].id)
-                    //}
-
-                    //alert(JSON.stringify({"table":table_id,"array":array_of_id}));
-                //},
-                //dragHandle:"input.imgClassUp"
-                dragHandle: ".dragHandle"
+                dragHandle: "input.imgClassUp"
 
 
             });
@@ -27,70 +15,145 @@ $(document).ready(function(){
 
     $("#content").on('click', 'input#add_list', function()
     {
-        $.post("new_project", function (data) {
-            //alert(data)
+            $.ajax({
+            url:"new_project",
+            type: 'POST',
+            success: function(result) {
+                result.appendTo($(this))
+            },
 
-            //$("#content").append(data)
-            $(data).appendTo('#content.tasks')
-        })
+            error :function(){alert('error')}
+   })
+ });
 
+    $("#content").on ('click', 'input[name="isDone"]', function(){
+            status=$(this).is(':checked')
+            $.ajax({
+            url:$(this).attr('href'),
+            type: 'PUT',
+            data:{status:status },
+            success: function(result) {
+            },
 
+            error :function(){alert('error')}
+    });
    });
 
-    $('#content').on('submit', ".new_task", function(){
-        alert("д")
-        var params=$(this).serialize();
-        alert(params)
-        $.post("new_task", params).error(function() { alert("Ошибка выполнения"); })
-        return false;
+    $('#content').on('click', ".new_task_submit", function(){
+        alert(',.,.,')
+        var params=$(this).parents("tr").children("form").serialize();
+        //alert(params)
+        alert($(this).parents("tr").children('form'))
+        //$.post("new_task", params).error(function() { alert("Ошибка выполнения"); })
+        //return false;
     });
 
         $("#content").on('click','input.imgClassEdit', function(e) {
             var $tables = $(".tasks");
+            if (!this.name) {this.name='Save'
             $tables.each(function () {
                 var _table = $(this);
-                //_table.find('tr td.editable.col_change').
-                    //append($('<th class="edit">&nbsp;</th>'));
             })
             editable(this);
-            //alert('kkkk')
             e.preventDefault();
+            }
+
+           else{
+                var name=$('#new_name').val();
+                var $row = $(this).parents('tr');
+
+                $.ajax({
+                    url:$(this).attr('href'),
+                    type: 'PUT',
+                    dataType: "html",
+                    data: {
+                        new_name: name
+                     },
+                    success: function(result) {
+                        resStr = result.substring(result.lastIndexOf('<link') + 1, result.indexOf('</tr>'));
+                        $row.replaceWith(resStr)
+                    }
+                });
+                 this.name=null;
+
+                }
+
         });
 
 
 
+
+
+
         function  editable (button) {
-        //alert('....')
         var $button = $(button);
         var $row = $button.parents('tr');
         var $cells = $row.children('td.editable.col_change').not('.edit');
             $cells.each(function () {
                 var _cell = $(this);
                 var d=_cell.data('text')
-                //alert('text'+d)
                 _cell.data('text',_cell.html())
                 .html('');
-                var $input = $('<input type="text" />')
+                var $input = $('<input type="text" id ="new_name"/>')
                     .val(_cell.data('text'))
-                    .width(_cell.width() - 16);
-                //alert(_cell.data('text'))
+                    .width(_cell.width());
                 _cell.append($input);
             });
-
-            if ($row.data('flag')) { // in edit mode, move back to table
-            $row.data('flag', false);
-            $button.text('Edit');
-        }
-        else {
-            $row.data('flag', true);
-            $button.text('Save');
-        }
     };
+
+    function  editableP (button) {
+        var $button = $(button);
+      //  alert('editableP')
+        var $row = $button.parents('tr');
+        var $cells = $row.children('td.editable').not('.edit');
+        $cells.each(function () {
+            var _cell = $(this);
+            var d=_cell.data('text')
+            _cell.data('text',_cell.html())
+                .html('');
+            var $input = $('<input type="text" id ="new_project_name"/>')
+                .val(_cell.data('text'))
+                .width(_cell.width() - 16);
+            _cell.append($input);
+        });
+    };
+
+
+    $("#content").on('click','input.imgClassEditProject', function(e) {
+        var $tables = $(".tasks");
+       // alert(this.name)
+        if (!this.name) {this.name='Save'
+            $tables.each(function () {
+                var _table = $(this);
+            })
+            editableP(this);
+            e.preventDefault();
+
+        }
+
+        else{
+            var name=$('#new_project_name').val();
+            $table1=$(this).parents('.tasks')
+            $.ajax({
+                url:$(this).attr('href'),
+                type: 'PUT',
+                data: {
+                    new_name: name
+                },
+                success: function(result) {
+                    resStr = result.substring(result.indexOf('<table'), result.indexOf('</table>'));
+                    //alert(resStr)
+
+                    $table1.replaceWith(resStr)
+                }
+            });
+            this.name=null;
+        }
+    });
 
 
 
     $('#content').on('click', 'a', function(a){
-    alert ('ok')
     var url=$(this).attr('href');
     var method=$(this).attr("data-method")
     if (method=="delete") {
@@ -109,13 +172,11 @@ $(document).ready(function(){
 })  ;
 
 $('#content').on('submit', '#new_user', function(a){
-        alert('n')
         var params=$(this).serialize();
         var url=$(this).attr('action');
         $.post(url, params,function(data){
             $("#content").empty();
             if (data.indexOf("<!DOCTYPE html>")>=0){
-                alert(data.getElementsByTagName('meta').item("name=csrf-token"));
                 $.get("/user_info",function(data){
                     $("#content").prepend(data)
                 })
@@ -130,7 +191,29 @@ $('#content').on('submit', '#new_user', function(a){
 
 
     $('#content').on('click', 'input.imgClassDelete', function(a){
-        $.delete("delete_task")
+
+       var id ='#'+$(this).attr('name')
+        $.ajax({
+            url:$(this).attr('href'),
+            type: 'DELETE',
+            success: function(result) {
+                $(id).remove()
+            }
+        });
+
+    });
+
+    $('#content').on('click', 'input.imgClassDeleteProject', function(a){
+
+        var id ='#'+$(this).attr('name')
+        $.ajax({
+            url:$(this).attr('href'),
+            type: 'DELETE',
+            success: function(result) {
+                $(id).remove()
+            }
+        });
+
     });
 
 });

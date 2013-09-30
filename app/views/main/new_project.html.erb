@@ -1,15 +1,14 @@
-<%p=Project.last%>
-<table class="tasks" id = "project_<%=p.id%>">
-  <tr class="header nodrop nodrag">
+<table class="tasks"   id = "project_<%=@p.id%>">
+  <tr class="header nodrop nodrag" >
     <td align="center" >
       <img src = "../images/sheet1.png">
     </td>
-    <td >
-      <%=p.name%>
+    <td  class="editable" >
+      <%=@p.name%>
     </td>
     <td align="right"   >
-      <input type="button"  class="imgClassEditProject"/>
-      <input type="button"  class="imgClassDeleteProject"/>
+      <input type="button"  class="imgClassEditProject" href = "/edit_project/<%=@p.id%>"/>
+      <input type="button"  class="imgClassDeleteProject"  href = "/destroy_project/<%=@p.id%>" name="project_<%=@p.id%>"/>
     </td>
   </tr>
   <tr class="new_task_create nodrop nodrag">
@@ -17,13 +16,29 @@
       <img src="../images/cross.png">
     </td>
     <td>
-      <%=form_for Task.new, :url => "/new_task" do |f| %>
-          <%=f.hidden_field :project, :value => p.id %>
-          <%=f.text_field :name,:class => "new_task_field", :placeholder=>'Start typing here to create a task ...'%>
+      <%=form_for Task.new, :html => { :id => "form_#{@p.id}" }, :url => "/new_task" do |f| %>
+          <%=f.hidden_field :project, :id=> "hf_prj#{@p.id}", :value => @p.id %>
+          <%=f.text_field :name,:id=>"f_prj#{@p.id} ", :class => "new_task_field", :placeholder=>'Start typing here to create a task ...'%>
           </td>
           <td>
             <%=f.submit :value=>"Add Task", :class=>"new_task_submit"%>
           </td>
       <%end%>
       </tr>
-    </table>
+  <%@p.tasks.each do |t|%>
+      <tr id = "task_<%=t.id%>" class="row_change">
+        <<%if t.status==true%>
+            <td class="col_change_first"><input type="checkbox" name="isDone" href = "/change_task_status/<%=t.id%>" checked></td>
+        <%else%>
+            <td class="col_change_first"><input type="checkbox" name="isDone" href = "/change_task_status/<%=t.id%>"></td>
+        <%end%>
+        <td class=" editable col_change"> <%=t.name%> </td>
+        <td class="col_change">
+          <input type="button" class="imgClassUp" />
+          <input type="button" class= "imgClassEdit" href = "/edit_task/<%=t.id%>">
+          <input type="button" class="imgClassDelete" href = "/destroy_task/<%=t.id%>" name="task_<%=t.id%>">
+        </td>
+      </tr>
+  <%end%>
+</table>
+
